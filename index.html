@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Créez gratuitement un code QR pour un lien ou un texte, directement dans votre navigateur."
+    />
+    <meta name="theme-color" content="#f6f7f3" />
+    <title>QR Studio — Générateur de code QR gratuit</title>
+    <script type="module" crossorigin src="/qr-studio-site/assets/index-Bh_3NDPQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/qr-studio-site/assets/index-C9Yw2wz5.css">
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="QR Studio, accueil">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M4 4h9v9H4zM19 4h9v9h-9zM4 19h9v9H4z" stroke="currentColor" stroke-width="2.5" />
+              <path d="M8 8h1v1H8zM23 8h1v1h-1zM8 23h1v1H8zM19 19h4v4h-4zM25 19h3v3h-3zM25 25h3v3h-3zM19 26h3" stroke="currentColor" stroke-width="2.5" />
+            </svg>
+          </span>
+          <span>qr<span class="brand-accent">.</span>studio</span>
+        </a>
+        <span class="privacy-note"><span class="privacy-dot"></span> QR statiques privés par conception</span>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div class="eyebrow"><span class="eyebrow-line"></span> SIMPLE. RAPIDE. PRIVÉ.</div>
+          <h1 id="page-title">Un lien. Un scan.<br /><span>Et c’est parti.</span></h1>
+          <p>Créez un code QR prêt à partager, en quelques secondes. Gratuitement et sans inscription.</p>
+        </section>
+
+        <section class="generator" aria-label="Générateur de code QR">
+          <form class="input-panel" id="qr-form" novalidate>
+            <div class="panel-heading">
+              <div>
+                <span class="step-label">ÉTAPE 01</span>
+                <h2>Votre contenu</h2>
+              </div>
+              <span class="text-icon" aria-hidden="true">Aa</span>
+            </div>
+
+            <label for="qr-content">Lien ou texte à partager</label>
+            <textarea
+              id="qr-content"
+              name="content"
+              rows="5"
+              placeholder="https://exemple.fr"
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="input-hint char-count form-error"
+            ></textarea>
+            <div class="input-meta">
+              <span id="input-hint">Astuce : les adresses web commencent par https://</span>
+              <span id="char-count">0 caractère</span>
+            </div>
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+
+            <div class="options-row">
+              <label for="qr-size">Taille de l’image</label>
+              <div class="select-wrap">
+                <select id="qr-size" name="size">
+                  <option value="256">256 × 256 px</option>
+                  <option value="384" selected>384 × 384 px</option>
+                  <option value="512">512 × 512 px</option>
+                </select>
+                <svg aria-hidden="true" viewBox="0 0 12 8"><path d="m1 1 5 5 5-5" /></svg>
+              </div>
+            </div>
+
+            <button class="generate-button" type="submit">
+              <span>Générer mon QR code</span>
+              <svg aria-hidden="true" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10h12m-5-5 5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <p class="local-note">
+              <svg aria-hidden="true" viewBox="0 0 16 16" fill="none">
+                <rect x="3" y="7" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.4" />
+                <path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+              </svg>
+              Votre contenu reste dans votre navigateur.
+            </p>
+          </form>
+
+          <section class="preview-panel" aria-labelledby="preview-title">
+            <div class="panel-heading preview-heading">
+              <div>
+                <span class="step-label">ÉTAPE 02</span>
+                <h2 id="preview-title">Votre QR code</h2>
+              </div>
+              <span class="live-badge"><span></span> APERÇU</span>
+            </div>
+            <p class="stale-note" id="stale-note" hidden>Contenu modifié — régénérez le QR code pour actualiser l’aperçu.</p>
+
+            <div class="qr-stage" id="qr-stage" aria-live="polite">
+              <div class="empty-state" id="empty-state">
+                <div class="empty-graphic" aria-hidden="true">
+                  <span class="corner corner-tl"></span>
+                  <span class="corner corner-tr"></span>
+                  <span class="corner corner-bl"></span>
+                  <span class="fake-code">
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                    <i></i><i></i><i></i><i></i><i></i><i></i>
+                  </span>
+                </div>
+                <p>Votre QR code apparaîtra ici</p>
+                <span>Ajoutez un lien ou un texte pour commencer</span>
+              </div>
+              <canvas id="qr-canvas" hidden aria-label="Aperçu de votre code QR"></canvas>
+            </div>
+
+            <div class="preview-footer">
+              <div class="format-copy">
+                <span class="format-icon">PNG</span>
+                <span><strong>Prêt à l’emploi</strong><small>Haute qualité, fond blanc</small></span>
+              </div>
+              <div class="download-actions">
+                <button class="download-button secondary" id="download-svg" type="button" disabled>
+                  SVG
+                </button>
+                <button class="download-button primary" id="download-png" type="button" disabled>
+                  <svg aria-hidden="true" viewBox="0 0 18 18" fill="none">
+                    <path d="M9 2.5v8m0 0 3-3m-3 3-3-3M3.5 12v2.5h11V12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Télécharger
+                </button>
+              </div>
+            </div>
+            <p class="download-error" id="download-error" role="alert" hidden></p>
+          </section>
+        </section>
+
+        <section class="account-section" aria-labelledby="account-title">
+          <div class="account-intro">
+            <span class="step-label">QR DYNAMIQUES</span>
+            <h2 id="account-title">Gardez le contrôle après impression</h2>
+            <p>Modifiez la destination d’un QR déjà partagé et suivez ses scans.</p>
+          </div>
+
+          <div class="account-card">
+            <p class="cloud-unavailable" id="cloud-unavailable" role="status" hidden>
+              Le tableau de bord en ligne sera disponible après configuration du service. Le générateur statique reste utilisable sans compte.
+            </p>
+
+            <form class="auth-form" id="auth-form" hidden>
+              <label for="account-email">Adresse e-mail</label>
+              <input id="account-email" name="email" type="email" autocomplete="email" required />
+              <label for="account-password">Mot de passe</label>
+              <input id="account-password" name="password" type="password" autocomplete="current-password" minlength="8" required />
+              <div class="auth-actions">
+                <button class="download-button primary" id="sign-in" type="submit">Se connecter</button>
+                <button class="download-button secondary" id="sign-up" type="button">Créer un compte</button>
+              </div>
+            </form>
+
+            <div class="dashboard" id="dashboard" hidden>
+              <div class="dashboard-heading">
+                <div>
+                  <span class="step-label">VOTRE OFFRE</span>
+                  <h3 id="plan-label">Gratuit</h3>
+                </div>
+                <button class="text-button" id="sign-out" type="button">Déconnexion</button>
+              </div>
+              <p class="account-message" id="account-message" role="status" hidden></p>
+
+              <form class="dynamic-form" id="dynamic-form">
+                <label for="dynamic-name">Nom du QR</label>
+                <input id="dynamic-name" name="name" maxlength="80" placeholder="Menu du restaurant" required />
+                <label for="dynamic-url">Destination (URL HTTPS)</label>
+                <input id="dynamic-url" name="destination" type="url" inputmode="url" placeholder="https://exemple.fr" required />
+                <button class="generate-button" type="submit"><span>Créer un QR dynamique</span></button>
+              </form>
+
+              <div class="qr-list-heading">
+                <h3>Mes QR dynamiques</h3>
+                <button class="text-button" id="manage-subscription" type="button" hidden>Gérer mon abonnement</button>
+              </div>
+              <div class="qr-list" id="qr-list" aria-live="polite"></div>
+              <button class="pro-button" id="upgrade-pro" type="button">Découvrir QR Studio Pro</button>
+            </div>
+
+            <div class="plans" aria-label="Offres QR Studio">
+              <div><strong>Free</strong><span>QR statiques illimités · 1 QR dynamique · total des scans</span></div>
+              <div><strong>Pro</strong><span>Jusqu’à 25 QR dynamiques · scans sur 30 jours · gestion de l’abonnement<br /><small id="pro-price-label">Prix affiché avant paiement.</small></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="benefits" aria-label="À propos de QR Studio">
+          <div><span class="benefit-icon">✳</span><span><strong>QR statiques gratuits</strong><small>Génération locale, sans limite.</small></span></div>
+          <div><span class="benefit-icon">⌁</span><span><strong>Vos données restent à vous</strong><small>Scans agrégés, sans IP dans l’application.</small></span></div>
+          <div><span class="benefit-icon">↗</span><span><strong>Prêt à partager</strong><small>Téléchargez et utilisez partout.</small></span></div>
+        </section>
+      </main>
+
+      <footer>
+        <span>© 2026 qr.studio</span>
+        <div class="footer-right">
+          <a class="support-link" id="support-link" hidden target="_blank" rel="noopener noreferrer nofollow">Soutenir le projet ↗</a>
+          <span>Fait simplement, pour vous.</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
